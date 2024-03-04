@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from "svelte";
   import JsonDisplayRow from "./lib/JsonDisplayRow.svelte";
   let clear;
   let meters = [];
@@ -44,21 +43,24 @@
     <div class="control-block">
       <JsonDisplayRow data={gridState} />
     </div>
-    <div class="slider-container control-block">
-      <label for="intervalSlider">Interval:</label>
-      <input
-        type="range"
-        id="intervalSlider"
-        min="100"
-        max="3000"
-        step="100"
-        bind:value={ms}
-      />
-      <span>{ms} ms</span>
+    <div class="control-block frame-control">
+      <div class="slider-container">
+        <label for="intervalSlider">Interval:</label>
+        <input
+          type="range"
+          id="intervalSlider"
+          min="100"
+          max="3000"
+          step="100"
+          bind:value={ms}
+        />
+        <span>{ms} ms</span>
+      </div>
+      <div class="remaining">
+        <span>Remaining: {remaining}</span>
+      </div>
     </div>
-    <div class="remaining control-block">
-      <span>Remaining: {remaining}</span>
-    </div>
+
   </div>
 
   <div class="card">
@@ -103,5 +105,11 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px;
+  }
+
+  .frame-control {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 </style>
